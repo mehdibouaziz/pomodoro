@@ -8,7 +8,7 @@ class App extends React.Component {
     this.state = {
       breakLength: 5,
       sessionLength: 25,
-      secLeft: 10,
+      secLeft: 1500,
       timerLabel: 'Session',
       status: 'stopped'
     }
