@@ -1,5 +1,7 @@
 import React from 'react';
 import './App.css';
+import ProgressBar from './components/ProgressBar';
+
 
 
 class App extends React.Component {
@@ -17,6 +19,7 @@ class App extends React.Component {
     this.handleStart = this.handleStart.bind(this);
     this.handleReset = this.handleReset.bind(this);
     this.secToMinSec = this.secToMinSec.bind(this);
+    this.calcProgress = this.calcProgress.bind(this);
     this.startClock = this.startClock.bind(this);
     this.stopClock = this.stopClock.bind(this);
     this.tick = this.tick.bind(this);
@@ -86,7 +89,8 @@ class App extends React.Component {
       sessionLength: 25,
       secLeft: 1500,
       timerLabel: 'Session',
-      status: 'stopped'
+      status: 'stopped',
+      progress : 0
     });
     document.getElementById('beep').pause();
     document.getElementById('beep').currentTime = 0;
@@ -97,6 +101,16 @@ class App extends React.Component {
     let min = Math.floor(int/60).toString().padStart(2, '0');
     let sec = (int%60).toString().padStart(2, '0');
     return(min+':'+sec);
+  }
+
+  calcProgress(int) {
+    if(this.state.timerLabel === 'Session') {
+      return ( Math.round((this.state.sessionLength*60 - int) / (this.state.sessionLength*60) *10000)/100 );
+    } else if (this.state.timerLabel === 'Break') {
+      return ( Math.round((this.state.breakLength*60 - int) / (this.state.breakLength*60) *10000)/100 );
+    } else {
+      return 0;
+    };
   }
 
   startClock() {
@@ -111,8 +125,9 @@ class App extends React.Component {
   }
 
   tick() {
+    let left = this.state.secLeft-1
     this.setState({
-      secLeft: this.state.secLeft-1
+      secLeft: left
     });
     if(this.state.secLeft<0){
       this.timeOut()
@@ -144,44 +159,62 @@ class App extends React.Component {
       <div className="App flex-col">
         
         <div className='' id='title'>
-          Pomodoro Clock
+          <h1>Pomodoro Clock</h1>
         </div>
-  
 
-        <div className='' id='settings'>
+        <ProgressBar 
+          label={this.state.timerLabel}
+          time={this.secToMinSec(this.state.secLeft)}
+          progress={this.calcProgress(this.state.secLeft)}
+          size={Math.min(document.documentElement.clientWidth*0.8, 250)}
+          strokeWidth={6}
+          circleOneStroke={this.state.timerLabel==='Break' ? '#0ca6df' : '#df450c'}
+          circleTwoStroke='#505a6a'
+        />
 
-          <div id='settings-break'>
-            <p id='break-label'>Break Length</p>
-            <div className='flex-row'>
-              <button onClick={this.handleSetting} id='break-decrement'>-</button>
-              <p id='break-length'>{this.state.breakLength}</p>
-              <button onClick={this.handleSetting} id='break-increment'>+</button>
+        {/* FOR CODEPEN */}
+        {/*
+          <div className='clock flex-col' style={{gap: 10}}>
+          <div style={{margin: 0}}>
+                <text id='timer-label' className="svg-circle-text">
+                      {this.state.timerLabel}
+                </text>
             </div>
-          </div>
-  
-          <div id='settings-session'>
-            <p id='session-label'>Session Length</p>
-            <div className='flex-row'>
-              <button onClick={this.handleSetting} id='session-decrement'>-</button>
-              <p id='session-length'>{this.state.sessionLength}</p>
-              <button onClick={this.handleSetting} id='session-increment'>+</button>
+            <div style={{margin: 0}}>
+                <text id='time-left' className="svg-circle-text" style={this.state.timerLabel==='Break' ? {color: "#0ca6df"} : {color: "#df450c"}}>
+                      {this.secToMinSec(this.state.secLeft)}
+                </text>
             </div>
-          </div>
-
-        </div>
+            </div>
+        */}
   
 
-        <div className='' id='timer'>
-          <p id='timer-label'>{this.state.timerLabel}</p>
-          <p id='time-left'>{this.secToMinSec(this.state.secLeft)}</p>
-        </div>
-  
-
-        <div className='' id='controls'>
-          <button onClick={this.handleStart} id='start_stop'><i className="fas fa-play"></i><i className="fas fa-pause"></i></button>
-          <button onClick={this.handleReset} id='reset'><i class="fas fa-undo"></i></button>
+        <div className='flex-row' id='controls'>
+          <div className='clock-control' onClick={this.handleStart} id='start_stop'>{this.state.status==='running' ? <i class="fas fa-pause-circle fa-2x"></i> : <i class="fas fa-play-circle fa-2x"></i>}</div>
+          <div className='clock-control' onClick={this.handleReset} id='reset'><i class="fas fa-times-circle fa-2x"></i></div>
           <audio id='beep' preload='auto' src='https://raw.githubusercontent.com/freeCodeCamp/cdn/master/build/testable-projects-fcc/audio/BeepSound.wav' />
-          <p>Status: {this.state.status}</p>
+        </div>
+
+        <div className='flex-row' id='settings'>
+
+          <div className='flex-col setting-box' id='settings-break'>
+            <p className='setting-label' id='break-label'>Break Length</p>
+            <div className='flex-row setting-dial'>
+              <i className='setting-button' onClick={this.handleSetting} id='break-decrement' class="fas fa-minus-circle fa-lg"></i>
+              <p className='setting-value' id='break-length'>{this.state.breakLength}</p>
+              <i className='setting-button' onClick={this.handleSetting} id='break-increment' class="fas fa-plus-circle fa-lg"></i>
+            </div>
+          </div>
+  
+          <div className='flex-col setting-box' id='settings-session'>
+            <p className='setting-label' id='session-label'>Session Length</p>
+            <div className='flex-row setting-dial'>
+              <i className='setting-button' onClick={this.handleSetting} id='session-decrement' class="fas fa-minus-circle fa-lg"></i>
+              <p className='setting-value' id='session-length'>{this.state.sessionLength}</p>
+              <i className='setting-button' onClick={this.handleSetting} id='session-increment' class="fas fa-plus-circle fa-lg"></i>
+            </div>
+          </div>
+
         </div>
   
       </div>

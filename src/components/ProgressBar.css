@@ -1,0 +1,30 @@
+
+.svg {
+    display: block;
+    margin: 20px auto;
+    max-width: 100%;
+}
+
+.svg-circle-bg{
+    fill: none;
+}
+
+.svg-circle{
+    fill: none;
+}
+
+.svg-circle-text{
+    text-anchor: middle;
+    fill: #ccc;
+}
+
+#timer-label {
+    font-size: 1.5rem;
+    font-family: 'Roboto';
+}
+
+#time-left{
+    font-size: 5rem;
+    font-family: 'digital-7', 'Orbitron';
+}
+
