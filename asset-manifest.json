@@ -1,22 +1,23 @@
 {
   "files": {
-    "main.css": "/pomodoro/static/css/main.511573c5.chunk.css",
-    "main.js": "/pomodoro/static/js/main.3f8747c4.chunk.js",
-    "main.js.map": "/pomodoro/static/js/main.3f8747c4.chunk.js.map",
-    "runtime-main.js": "/pomodoro/static/js/runtime-main.2a2a03aa.js",
-    "runtime-main.js.map": "/pomodoro/static/js/runtime-main.2a2a03aa.js.map",
-    "static/js/2.b3c2d9a7.chunk.js": "/pomodoro/static/js/2.b3c2d9a7.chunk.js",
-    "static/js/2.b3c2d9a7.chunk.js.map": "/pomodoro/static/js/2.b3c2d9a7.chunk.js.map",
-    "static/js/3.7a6fb6ea.chunk.js": "/pomodoro/static/js/3.7a6fb6ea.chunk.js",
-    "static/js/3.7a6fb6ea.chunk.js.map": "/pomodoro/static/js/3.7a6fb6ea.chunk.js.map",
+    "main.css": "/pomodoro/static/css/main.656f3e0b.chunk.css",
+    "main.js": "/pomodoro/static/js/main.c24e0909.chunk.js",
+    "main.js.map": "/pomodoro/static/js/main.c24e0909.chunk.js.map",
+    "runtime-main.js": "/pomodoro/static/js/runtime-main.31ddc13f.js",
+    "runtime-main.js.map": "/pomodoro/static/js/runtime-main.31ddc13f.js.map",
+    "static/js/2.1ead732b.chunk.js": "/pomodoro/static/js/2.1ead732b.chunk.js",
+    "static/js/2.1ead732b.chunk.js.map": "/pomodoro/static/js/2.1ead732b.chunk.js.map",
+    "static/js/3.539c4436.chunk.js": "/pomodoro/static/js/3.539c4436.chunk.js",
+    "static/js/3.539c4436.chunk.js.map": "/pomodoro/static/js/3.539c4436.chunk.js.map",
     "index.html": "/pomodoro/index.html",
-    "static/css/main.511573c5.chunk.css.map": "/pomodoro/static/css/main.511573c5.chunk.css.map",
-    "static/js/2.b3c2d9a7.chunk.js.LICENSE.txt": "/pomodoro/static/js/2.b3c2d9a7.chunk.js.LICENSE.txt"
+    "static/css/main.656f3e0b.chunk.css.map": "/pomodoro/static/css/main.656f3e0b.chunk.css.map",
+    "static/js/2.1ead732b.chunk.js.LICENSE.txt": "/pomodoro/static/js/2.1ead732b.chunk.js.LICENSE.txt",
+    "static/media/App.css": "/pomodoro/static/media/digital-7-webfont.41ff7fa0.woff"
   },
   "entrypoints": [
-    "static/js/runtime-main.2a2a03aa.js",
-    "static/js/2.b3c2d9a7.chunk.js",
-    "static/css/main.511573c5.chunk.css",
-    "static/js/main.3f8747c4.chunk.js"
+    "static/js/runtime-main.31ddc13f.js",
+    "static/js/2.1ead732b.chunk.js",
+    "static/css/main.656f3e0b.chunk.css",
+    "static/js/main.c24e0909.chunk.js"
   ]
 }
